@@ -68,7 +68,7 @@ export default class PixService {
 
        await pixRepository.save(pixTransaction)
 
-       return {mag: 'Pagamento efetudo com sucesso'}
+       return {msg: 'Pagamento efetudo com sucesso'}
    }
 
    async transactions(user: Partial<User>) {

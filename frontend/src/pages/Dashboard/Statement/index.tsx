@@ -2,14 +2,16 @@
 import {StatementContainer, StatementItemContainer, StatementItemImage, StatementItemInfo} from './styles'
 import {format} from 'date-fns';
 import {FiDollarSign} from 'react-icons/fi';
+import {transactions} from '../../../services/resources/pix';
+import {useState, useEffect} from 'react';
 
 interface StatementItem {
     user: {
-        firstName: string,
+        firstname: string,
         lastName: string
     },
     value: number,
-    type: 'pay' | 'received',
+    type: 'paid' | 'received',
     updatedAt: Date
 }
 
@@ -24,8 +26,8 @@ const StatementItem = ({user, value, type, updatedAt}: StatementItem) =>{
                     style: 'currency',
                     currency: 'BRL'
                 })}</p>
-                <p>{type === 'pay' ? `Pago a` : `Recebido de`} <strong>{user.firstName} {user.lastName}</strong></p>
-                <p>{format(updatedAt, "dd/MM/yyyy 'às' HH:mm:'h'")}</p>
+                <p>{type === 'paid' ? `Pago a` : `Recebido de`} <strong>{user.firstname} {user.lastName}</strong></p>
+                <p>{format(new Date (updatedAt), "dd/MM/yyyy 'às' HH:mm:'h'")}</p>
             </StatementItemInfo>
         </StatementItemContainer>
     )
@@ -33,30 +35,20 @@ const StatementItem = ({user, value, type, updatedAt}: StatementItem) =>{
 
 const Statement = () => {
 
-    const statements: StatementItem[] = [
-        {
-            user: {
-                firstName: "Maria",
-                lastName: "Ribeiro"
-            },
-            value: 250.00,
-            type: 'pay',
-            updatedAt: new Date()
-        },
-        {
-            user: {
-                firstName: "Paula",
-                lastName: "Silva"
-            },
-            value: 270.00,
-            type: 'received',
-            updatedAt: new Date()
-        }
-    ]
+    const [statements, setStatements] = useState<StatementItem[]>([]);
+
+    const getAllTransactions = async () => {
+        const {data} = await transactions();
+        setStatements(data.transactions);
+    }
+
+    useEffect(() => {
+        getAllTransactions();
+    }, [])
 
   return (
         <StatementContainer>
-            {statements.map(statement => <StatementItem {...statement} />)}
+            {statements.length > 0 && statements.map(statement => <StatementItem {...statement} />)}
         </StatementContainer>
 
   )
