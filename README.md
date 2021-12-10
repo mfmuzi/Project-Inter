@@ -2,7 +2,7 @@
 
 
 
-# ![](C:\Users\Usuario\Desktop\InterApp.jpg)
+# ![InterApp](frontend/src/assets/images/InterApp.jpg)
 
 
 
