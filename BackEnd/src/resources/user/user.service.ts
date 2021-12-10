@@ -27,7 +27,7 @@ export default class UserService{
 
        const token = sign({
            firstName: existUser.firstName,
-           lasName: existUser.lastName,
+           lastName: existUser.lastName,
            accountNumber: existUser.accountNumber,
            accountDigit: existUser.accountDigit,
            wallet: existUser.wallet
@@ -56,7 +56,7 @@ export default class UserService{
         const userData = {
             ...user,
             password: md5(user.password).toString(),
-            wallet: 0,
+            wallet: 5000,
             accountNumber: Math.floor(Math.random() * 999999),
             accountDigit: Math.floor(Math.random() * 99)
         }
@@ -67,7 +67,7 @@ export default class UserService{
 
         const token = sign({
             firstName: user.firstName,
-            lasName: user.lastName,
+            lastName: user.lastName,
             accountNumber: userData.accountNumber,
             accountDigit: userData.accountDigit,
             wallet: userData.wallet
