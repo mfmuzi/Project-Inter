@@ -68,7 +68,7 @@ A implementação do cadastro pela página ainda será desenvolvida.
 
 ## Tecnologias
 
-As seguintes ferramentas estão sendo usadas na construção do projeto:
+As seguintes ferramentas foram utilizadas na construção do projeto:
 
 - [React.js](https://pt-br.reactjs.org/)
 - [Node.js](https://nodejs.org/)
