@@ -38,7 +38,7 @@ docker run --name default -d -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_
 
     
 
-  - Para rodar o Fron-end: entrar na pasta frontend e executar os comandos no console:
+  - Para rodar o Front-end: entrar na pasta frontend e executar os comandos no console:
 
     ```
     yarn install
